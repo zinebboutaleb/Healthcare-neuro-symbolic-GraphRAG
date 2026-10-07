@@ -1,0 +1,5 @@
+doc_id: DOC-DIS-05
+title: Overview of Chronic Kidney Disease
+doc_type: disease_overview
+---
+Chronic Kidney Disease is a fictional teaching entry describing gradual loss of kidney filtering function. Reported symptoms include Fatigue, Swelling in Legs, Nausea and Frequent Urination. Listed risk factors are Advanced Age, Smoking and High Sodium Intake. The condition is assessed using Serum Creatinine Test. Management options listed in this knowledge base are Renoprotect and Low-Sodium Diet. It is listed as associated with Hypertension and Type 2 Diabetes.

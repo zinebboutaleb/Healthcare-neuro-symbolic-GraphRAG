@@ -1,0 +1,5 @@
+doc_id: DOC-DIS-09
+title: Overview of Osteoarthritis
+doc_type: disease_overview
+---
+Osteoarthritis is a fictional teaching entry describing degeneration of joint cartilage. Reported symptoms include Joint Pain and Joint Stiffness. Listed risk factors are Obesity and Advanced Age. The condition is assessed using Joint X-Ray. Management options listed in this knowledge base are Arthrocalm, Physical Therapy and Weight Management Program.

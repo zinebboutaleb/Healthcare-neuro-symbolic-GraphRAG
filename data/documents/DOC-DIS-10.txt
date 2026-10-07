@@ -1,0 +1,5 @@
+doc_id: DOC-DIS-10
+title: Overview of GERD
+doc_type: disease_overview
+---
+GERD is a fictional teaching entry describing recurrent reflux of stomach contents into the oesophagus. Reported symptoms include Heartburn, Persistent Cough, Nausea and Chest Tightness. Listed risk factors are Obesity, Smoking and High Alcohol Intake. The condition is assessed using Upper Endoscopy. Management options listed in this knowledge base are Gastrazole and Weight Management Program. It is listed as associated with Asthma.

@@ -1,0 +1,5 @@
+doc_id: DOC-MED-09
+title: Monograph: Serenomax
+doc_type: medication_monograph
+---
+Serenomax is a fictional SSRI-like agent that raises serotonin availability. Reported side effects in this knowledge base include Drowsiness and Sleep Disturbance. Drowsiness is of particular concern for patients with Elderly Frailty. Sleep Disturbance is of particular concern for patients with Seizure Disorder. Serenomax is marked as contraindicated for patients with Seizure Disorder and Glaucoma. Contraindication note for Seizure Disorder: The synthetic entry flags a lowered seizure threshold. Contraindication note for Glaucoma: The synthetic entry flags a risk of raised eye pressure.

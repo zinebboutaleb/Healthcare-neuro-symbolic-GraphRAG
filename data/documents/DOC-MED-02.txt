@@ -1,0 +1,5 @@
+doc_id: DOC-MED-02
+title: Monograph: Diurex
+doc_type: medication_monograph
+---
+Diurex is a fictional diuretic-like agent that increases fluid excretion. Reported side effects in this knowledge base include Dehydration and Lightheadedness. Dehydration is of particular concern for patients with Severe Renal Impairment. Lightheadedness is of particular concern for patients with Elderly Frailty and Low Blood Pressure. Diurex is marked as contraindicated for patients with Low Blood Pressure and Elderly Frailty. Contraindication note for Low Blood Pressure: Fluid-lowering agents may further reduce blood pressure. Contraindication note for Elderly Frailty: Fluid loss may raise the risk of falls in frail patients. Diurex is listed as an alternative to Cardivex.

@@ -1,0 +1,5 @@
+doc_id: DOC-MED-04
+title: Monograph: Sulfaglide
+doc_type: medication_monograph
+---
+Sulfaglide is a fictional insulin-secretagogue-like agent that stimulates insulin release. Reported side effects in this knowledge base include Hypoglycemia and Fluid Retention. Hypoglycemia is of particular concern for patients with Elderly Frailty. Fluid Retention is of particular concern for patients with Severe Renal Impairment. Sulfaglide is marked as contraindicated for patients with Recurrent Hypoglycemia History and Elderly Frailty. Contraindication note for Recurrent Hypoglycemia History: The agent stimulates insulin release and may trigger further low-glucose episodes. Contraindication note for Elderly Frailty: Low-glucose episodes are harder to detect and manage in frail patients. Sulfaglide is listed as an alternative to Glucorin.

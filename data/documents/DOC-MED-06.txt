@@ -1,0 +1,5 @@
+doc_id: DOC-MED-06
+title: Monograph: Neurotrip
+doc_type: medication_monograph
+---
+Neurotrip is a fictional triptan-like agent that constricts cranial blood vessels. Reported side effects in this knowledge base include Drowsiness and Lightheadedness. Drowsiness is of particular concern for patients with Elderly Frailty. Lightheadedness is of particular concern for patients with Elderly Frailty and Low Blood Pressure. Neurotrip is marked as contraindicated for patients with Pregnancy. Contraindication note for Pregnancy: The synthetic entry marks this agent as not recommended during pregnancy.

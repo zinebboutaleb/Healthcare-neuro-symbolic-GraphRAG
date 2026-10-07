@@ -1,0 +1,5 @@
+doc_id: DOC-GL-05
+title: Guideline bulletin 5
+doc_type: guideline_bulletin
+---
+Guideline 'Depression Screening Guideline': Use a structured questionnaire to screen for depressive symptoms. It is associated with Major Depression and requires the Depression Screening Questionnaire. Guideline 'Gastric Safety Guideline': Consider endoscopic review in patients on Arthrocalm who develop persistent upper-abdominal symptoms. It is associated with Arthrocalm and requires the Upper Endoscopy.

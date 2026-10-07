@@ -1,0 +1,5 @@
+doc_id: DOC-DIS-08
+title: Overview of Major Depression
+doc_type: disease_overview
+---
+Major Depression is a fictional teaching entry describing a persistent depressive episode. Reported symptoms include Low Mood, Loss of Interest and Fatigue. Listed risk factors are Chronic Stress, Poor Sleep and High Alcohol Intake. The condition is assessed using Depression Screening Questionnaire. Management options listed in this knowledge base are Serenomax and Cognitive Behavioral Therapy. It is listed as associated with Migraine.

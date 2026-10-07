@@ -1,0 +1,5 @@
+doc_id: DOC-MED-05
+title: Monograph: Respirol
+doc_type: medication_monograph
+---
+Respirol is a fictional inhaled bronchodilator-like agent that opens the airways. Reported side effects in this knowledge base include Tremor. Tremor is of particular concern for patients with Heart Rhythm Disorder. Respirol is marked as contraindicated for patients with Heart Rhythm Disorder. Contraindication note for Heart Rhythm Disorder: Bronchodilator-like agents may increase heart rate.

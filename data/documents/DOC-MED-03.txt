@@ -1,0 +1,5 @@
+doc_id: DOC-MED-03
+title: Monograph: Glucorin
+doc_type: medication_monograph
+---
+Glucorin is a fictional biguanide-like agent that reduces glucose production. Reported side effects in this knowledge base include Stomach Irritation. Stomach Irritation is of particular concern for patients with Peptic Ulcer History. Glucorin is marked as contraindicated for patients with Severe Renal Impairment and Liver Impairment. Contraindication note for Severe Renal Impairment: The synthetic entry flags impaired clearance of the agent. Contraindication note for Liver Impairment: Reduced liver function may impair handling of the agent. Sulfaglide is listed as an alternative to Glucorin.

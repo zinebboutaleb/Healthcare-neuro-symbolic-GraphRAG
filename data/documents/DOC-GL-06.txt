@@ -1,0 +1,5 @@
+doc_id: DOC-GL-06
+title: Guideline bulletin 6
+doc_type: guideline_bulletin
+---
+Guideline 'Diuretic Hydration Guideline': Check kidney function and hydration status when Diurex is used. It is associated with Diurex and requires the Serum Creatinine Test. Guideline 'Migraine Evaluation Guideline': Perform a neurological examination to exclude other causes of recurrent headache. It is associated with Migraine and requires the Neurological Examination.

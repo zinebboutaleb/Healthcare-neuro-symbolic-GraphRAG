@@ -1,0 +1,5 @@
+doc_id: DOC-GL-02
+title: Guideline bulletin 2
+doc_type: guideline_bulletin
+---
+Guideline 'Diabetes Monitoring Guideline': Track long-term glucose control at regular intervals. It is associated with Type 2 Diabetes and requires the HbA1c Test. Guideline 'Insulin-Secretagogue Review Guideline': Review glucose control when Sulfaglide is started or its dose is changed. It is associated with Sulfaglide and requires the HbA1c Test.

@@ -1,0 +1,5 @@
+doc_id: DOC-DIS-02
+title: Overview of Type 2 Diabetes
+doc_type: disease_overview
+---
+Type 2 Diabetes is a fictional teaching entry describing impaired regulation of blood glucose. Reported symptoms include Increased Thirst, Frequent Urination, Fatigue and Blurred Vision. Listed risk factors are Obesity, Sedentary Lifestyle and Family History. The condition is assessed using HbA1c Test. Management options listed in this knowledge base are Glucorin, Sulfaglide and Weight Management Program. It is listed as associated with Chronic Kidney Disease.

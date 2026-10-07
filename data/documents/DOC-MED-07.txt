@@ -1,0 +1,5 @@
+doc_id: DOC-MED-07
+title: Monograph: Renoprotect
+doc_type: medication_monograph
+---
+Renoprotect is a fictional agent that lowers pressure inside kidney filtering units. Reported side effects in this knowledge base include Hyperkalemia. Hyperkalemia is of particular concern for patients with Severe Renal Impairment.

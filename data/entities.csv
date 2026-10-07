@@ -1,0 +1,114 @@
+id,name,type,description,aliases
+DIS01,Hypertension,Disease,Hypertension: persistently elevated blood pressure.,high blood pressure
+DIS02,Type 2 Diabetes,Disease,Type 2 Diabetes: impaired regulation of blood glucose.,diabetes|t2d
+DIS03,Asthma,Disease,"Asthma: recurrent, reversible narrowing of the airways.",
+DIS04,Migraine,Disease,Migraine: recurrent headache attacks with sensory sensitivity.,
+DIS05,Chronic Kidney Disease,Disease,Chronic Kidney Disease: gradual loss of kidney filtering function.,ckd
+DIS06,Heart Failure,Disease,Heart Failure: reduced ability of the heart to pump effectively.,
+DIS07,Hypothyroidism,Disease,Hypothyroidism: an underactive thyroid gland.,
+DIS08,Major Depression,Disease,Major Depression: a persistent depressive episode.,depression
+DIS09,Osteoarthritis,Disease,Osteoarthritis: degeneration of joint cartilage.,
+DIS10,GERD,Disease,GERD: recurrent reflux of stomach contents into the oesophagus.,acid reflux
+SYM01,Headache,Symptom,Pain felt in the head.,
+SYM02,Dizziness,Symptom,A sensation of unsteadiness.,dizzy
+SYM03,Blurred Vision,Symptom,Reduced sharpness of sight.,blurry vision
+SYM04,Chest Tightness,Symptom,A feeling of pressure in the chest.,
+SYM05,Increased Thirst,Symptom,Unusually strong thirst.,excessive thirst
+SYM06,Frequent Urination,Symptom,Needing to urinate more often than usual.,
+SYM07,Fatigue,Symptom,Persistent tiredness.,tiredness
+SYM08,Wheezing,Symptom,A whistling sound when breathing.,
+SYM09,Shortness of Breath,Symptom,Difficulty breathing.,breathlessness|short of breath
+SYM10,Persistent Cough,Symptom,A cough lasting for weeks.,
+SYM11,Nausea,Symptom,A feeling of sickness.,
+SYM12,Light Sensitivity,Symptom,Discomfort in bright light.,photophobia
+SYM13,Swelling in Legs,Symptom,Fluid accumulation in the legs.,leg swelling|swollen legs
+SYM14,Palpitations,Symptom,Awareness of the heartbeat.,
+SYM15,Weight Gain,Symptom,Unexplained increase in body weight.,
+SYM16,Cold Intolerance,Symptom,Unusual sensitivity to cold.,
+SYM17,Low Mood,Symptom,A persistently sad mood.,
+SYM18,Loss of Interest,Symptom,Reduced interest in usual activities.,
+SYM19,Joint Pain,Symptom,Pain in one or more joints.,
+SYM20,Joint Stiffness,Symptom,Reduced ease of joint movement.,
+SYM21,Heartburn,Symptom,Burning discomfort behind the breastbone.,
+RF01,Obesity,RiskFactor,Excess body weight.,
+RF02,High Sodium Intake,RiskFactor,A diet high in salt.,salt intake
+RF03,Sedentary Lifestyle,RiskFactor,Low physical activity.,
+RF04,Smoking,RiskFactor,Tobacco use.,
+RF05,Family History,RiskFactor,Relatives with the condition.,
+RF06,Advanced Age,RiskFactor,Older age.,older age
+RF07,Chronic Stress,RiskFactor,Long-term psychological stress.,
+RF08,Allergen Exposure,RiskFactor,Repeated contact with allergens.,
+RF09,High Alcohol Intake,RiskFactor,Heavy alcohol consumption.,
+RF10,Poor Sleep,RiskFactor,Insufficient or disrupted sleep.,
+TST01,Blood Pressure Measurement,DiagnosticTest,Repeated measurement of arterial blood pressure.,
+TST02,HbA1c Test,DiagnosticTest,A blood test reflecting average glucose control.,hba1c
+TST03,Spirometry,DiagnosticTest,A breathing test measuring airflow.,
+TST04,Neurological Examination,DiagnosticTest,A structured examination of nervous-system function.,
+TST05,Serum Creatinine Test,DiagnosticTest,A blood test of kidney function.,
+TST06,Echocardiogram,DiagnosticTest,An ultrasound examination of the heart.,
+TST07,TSH Blood Test,DiagnosticTest,A blood test of thyroid-stimulating hormone.,tsh test
+TST08,Depression Screening Questionnaire,DiagnosticTest,A structured questionnaire on mood.,
+TST09,Joint X-Ray,DiagnosticTest,Imaging of a joint.,
+TST10,Upper Endoscopy,DiagnosticTest,Direct visual inspection of the upper digestive tract.,
+SE01,Dry Cough,SideEffect,"A persistent tickling, non-productive cough.",
+SE02,Hyperkalemia,SideEffect,Elevated potassium in the blood.,
+SE03,Lightheadedness,SideEffect,Feeling faint on standing.,
+SE04,Hypoglycemia,SideEffect,Abnormally low blood glucose.,
+SE05,Tremor,SideEffect,Involuntary shaking.,
+SE06,Drowsiness,SideEffect,Excessive sleepiness.,
+SE07,Stomach Irritation,SideEffect,Irritation of the stomach lining.,
+SE08,Fluid Retention,SideEffect,Accumulation of body fluid.,
+SE09,Sleep Disturbance,SideEffect,Disrupted sleep.,
+SE10,Dehydration,SideEffect,Loss of body water.,
+PC01,Pregnancy,PatientCondition,A pregnant patient.,pregnant
+PC02,Severe Renal Impairment,PatientCondition,Markedly reduced kidney function.,severe kidney impairment|renal impairment
+PC03,Low Blood Pressure,PatientCondition,Abnormally low blood pressure.,hypotension
+PC04,Liver Impairment,PatientCondition,Reduced liver function.,
+PC05,Peptic Ulcer History,PatientCondition,A history of stomach or duodenal ulcers.,peptic ulcer
+PC06,Heart Rhythm Disorder,PatientCondition,An abnormal heart rhythm.,arrhythmia
+PC07,Glaucoma,PatientCondition,Raised pressure inside the eye.,
+PC08,Elderly Frailty,PatientCondition,"An elderly, frail patient.",frail|frailty
+PC09,Seizure Disorder,PatientCondition,A tendency to seizures.,epilepsy
+PC10,Recurrent Hypoglycemia History,PatientCondition,Repeated episodes of low blood glucose in the past.,
+MED01,Cardivex,Medication,A fictional ACE-inhibitor-like agent that relaxes blood vessels.,
+MED02,Diurex,Medication,A fictional diuretic-like agent that increases fluid excretion.,
+MED03,Glucorin,Medication,A fictional biguanide-like agent that reduces glucose production.,
+MED04,Sulfaglide,Medication,A fictional insulin-secretagogue-like agent that stimulates insulin release.,
+MED05,Respirol,Medication,A fictional inhaled bronchodilator-like agent that opens the airways.,
+MED06,Neurotrip,Medication,A fictional triptan-like agent that constricts cranial blood vessels.,
+MED07,Renoprotect,Medication,A fictional agent that lowers pressure inside kidney filtering units.,
+MED08,Thyrozen,Medication,A fictional synthetic thyroid-hormone-like agent.,
+MED09,Serenomax,Medication,A fictional SSRI-like agent that raises serotonin availability.,
+MED10,Arthrocalm,Medication,A fictional NSAID-like anti-inflammatory agent.,
+MED11,Gastrazole,Medication,A fictional proton-pump-inhibitor-like agent that reduces stomach acid.,
+TRT01,Low-Sodium Diet,Treatment,A dietary plan restricting salt.,
+TRT02,Structured Exercise Program,Treatment,"Supervised, graded physical activity.",
+TRT03,Cognitive Behavioral Therapy,Treatment,A structured talking therapy.,cbt
+TRT04,Physical Therapy,Treatment,Guided exercises for movement and strength.,
+TRT05,Weight Management Program,Treatment,A supervised programme for gradual weight reduction.,
+TRT06,Trigger Avoidance Plan,Treatment,Identifying and avoiding personal triggers.,
+CI01,Cardivex contraindicated in Pregnancy,Contraindication,[severe] ACE-inhibitor-like agents are marked as not recommended during pregnancy in this synthetic knowledge base.,
+CI02,Cardivex contraindicated in Severe Renal Impairment,Contraindication,[moderate] The synthetic entry flags reduced kidney clearance and a risk of potassium build-up.,
+CI03,Diurex contraindicated in Low Blood Pressure,Contraindication,[severe] Fluid-lowering agents may further reduce blood pressure.,
+CI04,Diurex contraindicated in Elderly Frailty,Contraindication,[moderate] Fluid loss may raise the risk of falls in frail patients.,
+CI05,Glucorin contraindicated in Severe Renal Impairment,Contraindication,[severe] The synthetic entry flags impaired clearance of the agent.,
+CI06,Glucorin contraindicated in Liver Impairment,Contraindication,[moderate] Reduced liver function may impair handling of the agent.,
+CI07,Sulfaglide contraindicated in Recurrent Hypoglycemia History,Contraindication,[severe] The agent stimulates insulin release and may trigger further low-glucose episodes.,
+CI08,Sulfaglide contraindicated in Elderly Frailty,Contraindication,[moderate] Low-glucose episodes are harder to detect and manage in frail patients.,
+CI09,Respirol contraindicated in Heart Rhythm Disorder,Contraindication,[moderate] Bronchodilator-like agents may increase heart rate.,
+CI10,Neurotrip contraindicated in Pregnancy,Contraindication,[severe] The synthetic entry marks this agent as not recommended during pregnancy.,
+CI11,Serenomax contraindicated in Seizure Disorder,Contraindication,[moderate] The synthetic entry flags a lowered seizure threshold.,
+CI12,Serenomax contraindicated in Glaucoma,Contraindication,[moderate] The synthetic entry flags a risk of raised eye pressure.,
+CI13,Arthrocalm contraindicated in Peptic Ulcer History,Contraindication,[severe] Anti-inflammatory agents may irritate the stomach lining and reopen ulcers.,
+GL01,Hypertension Confirmation Guideline,ClinicalGuideline,Confirm elevated readings on repeated measurements before starting long-term therapy.,
+GL02,ACE-Inhibitor-Like Renal Monitoring Guideline,ClinicalGuideline,Check kidney function before and after starting Cardivex.,
+GL03,Diabetes Monitoring Guideline,ClinicalGuideline,Track long-term glucose control at regular intervals.,
+GL04,Insulin-Secretagogue Review Guideline,ClinicalGuideline,Review glucose control when Sulfaglide is started or its dose is changed.,
+GL05,Asthma Lung Function Guideline,ClinicalGuideline,Document baseline airflow limitation when asthma is suspected.,
+GL06,Heart Failure Imaging Guideline,ClinicalGuideline,Assess cardiac structure and function when heart failure is suspected.,
+GL07,CKD Staging Guideline,ClinicalGuideline,Stage kidney disease using repeated kidney function measurements.,
+GL08,Thyroid Replacement Monitoring Guideline,ClinicalGuideline,Monitor thyroid hormone levels after starting Thyrozen.,
+GL09,Depression Screening Guideline,ClinicalGuideline,Use a structured questionnaire to screen for depressive symptoms.,
+GL10,Gastric Safety Guideline,ClinicalGuideline,Consider endoscopic review in patients on Arthrocalm who develop persistent upper-abdominal symptoms.,
+GL11,Diuretic Hydration Guideline,ClinicalGuideline,Check kidney function and hydration status when Diurex is used.,
+GL12,Migraine Evaluation Guideline,ClinicalGuideline,Perform a neurological examination to exclude other causes of recurrent headache.,

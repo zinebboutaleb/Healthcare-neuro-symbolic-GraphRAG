@@ -1,0 +1,5 @@
+doc_id: DOC-DIS-03
+title: Overview of Asthma
+doc_type: disease_overview
+---
+Asthma is a fictional teaching entry describing recurrent, reversible narrowing of the airways. Reported symptoms include Wheezing, Shortness of Breath, Chest Tightness and Persistent Cough. Listed risk factors are Smoking, Allergen Exposure and Family History. The condition is assessed using Spirometry. Management options listed in this knowledge base are Respirol and Trigger Avoidance Plan. It is listed as associated with GERD.

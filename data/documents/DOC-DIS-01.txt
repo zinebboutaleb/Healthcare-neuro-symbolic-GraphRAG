@@ -1,0 +1,5 @@
+doc_id: DOC-DIS-01
+title: Overview of Hypertension
+doc_type: disease_overview
+---
+Hypertension is a fictional teaching entry describing persistently elevated blood pressure. Reported symptoms include Headache, Dizziness, Blurred Vision and Chest Tightness. Listed risk factors are Obesity, High Sodium Intake and Sedentary Lifestyle. The condition is assessed using Blood Pressure Measurement. Management options listed in this knowledge base are Cardivex, Diurex and Low-Sodium Diet. It is listed as associated with Chronic Kidney Disease and Heart Failure.

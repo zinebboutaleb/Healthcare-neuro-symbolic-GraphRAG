@@ -1,0 +1,5 @@
+doc_id: DOC-DIS-07
+title: Overview of Hypothyroidism
+doc_type: disease_overview
+---
+Hypothyroidism is a fictional teaching entry describing an underactive thyroid gland. Reported symptoms include Fatigue, Weight Gain, Cold Intolerance and Low Mood. Listed risk factors are Advanced Age and Family History. The condition is assessed using TSH Blood Test. Management options listed in this knowledge base are Thyrozen.

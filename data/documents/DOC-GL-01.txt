@@ -1,0 +1,5 @@
+doc_id: DOC-GL-01
+title: Guideline bulletin 1
+doc_type: guideline_bulletin
+---
+Guideline 'Hypertension Confirmation Guideline': Confirm elevated readings on repeated measurements before starting long-term therapy. It is associated with Hypertension and requires the Blood Pressure Measurement. Guideline 'ACE-Inhibitor-Like Renal Monitoring Guideline': Check kidney function before and after starting Cardivex. It is associated with Cardivex and requires the Serum Creatinine Test.

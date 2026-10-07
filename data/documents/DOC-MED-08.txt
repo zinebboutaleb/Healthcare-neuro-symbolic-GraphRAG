@@ -1,0 +1,5 @@
+doc_id: DOC-MED-08
+title: Monograph: Thyrozen
+doc_type: medication_monograph
+---
+Thyrozen is a fictional synthetic thyroid-hormone-like agent. Reported side effects in this knowledge base include Sleep Disturbance. Sleep Disturbance is of particular concern for patients with Seizure Disorder.

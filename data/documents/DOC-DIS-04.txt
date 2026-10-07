@@ -1,0 +1,5 @@
+doc_id: DOC-DIS-04
+title: Overview of Migraine
+doc_type: disease_overview
+---
+Migraine is a fictional teaching entry describing recurrent headache attacks with sensory sensitivity. Reported symptoms include Headache, Nausea, Light Sensitivity and Dizziness. Listed risk factors are Chronic Stress, Poor Sleep and Family History. The condition is assessed using Neurological Examination. Management options listed in this knowledge base are Neurotrip and Trigger Avoidance Plan. It is listed as associated with Major Depression.

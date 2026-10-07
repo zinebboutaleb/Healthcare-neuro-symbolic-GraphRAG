@@ -1,0 +1,5 @@
+doc_id: DOC-MED-10
+title: Monograph: Arthrocalm
+doc_type: medication_monograph
+---
+Arthrocalm is a fictional NSAID-like anti-inflammatory agent. Reported side effects in this knowledge base include Stomach Irritation and Fluid Retention. Stomach Irritation is of particular concern for patients with Peptic Ulcer History. Fluid Retention is of particular concern for patients with Severe Renal Impairment. Arthrocalm is marked as contraindicated for patients with Peptic Ulcer History. Contraindication note for Peptic Ulcer History: Anti-inflammatory agents may irritate the stomach lining and reopen ulcers.

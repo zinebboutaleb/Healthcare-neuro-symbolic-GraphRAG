@@ -1,0 +1,5 @@
+doc_id: DOC-GL-04
+title: Guideline bulletin 4
+doc_type: guideline_bulletin
+---
+Guideline 'CKD Staging Guideline': Stage kidney disease using repeated kidney function measurements. It is associated with Chronic Kidney Disease and requires the Serum Creatinine Test. Guideline 'Thyroid Replacement Monitoring Guideline': Monitor thyroid hormone levels after starting Thyrozen. It is associated with Thyrozen and requires the TSH Blood Test.

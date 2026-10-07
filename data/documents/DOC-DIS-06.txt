@@ -1,0 +1,5 @@
+doc_id: DOC-DIS-06
+title: Overview of Heart Failure
+doc_type: disease_overview
+---
+Heart Failure is a fictional teaching entry describing reduced ability of the heart to pump effectively. Reported symptoms include Shortness of Breath, Swelling in Legs, Fatigue and Palpitations. Listed risk factors are Advanced Age, High Alcohol Intake and Sedentary Lifestyle. The condition is assessed using Echocardiogram. Management options listed in this knowledge base are Cardivex, Diurex and Structured Exercise Program. It is listed as associated with Hypertension.

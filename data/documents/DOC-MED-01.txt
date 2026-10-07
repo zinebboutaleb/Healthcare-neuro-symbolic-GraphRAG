@@ -1,0 +1,5 @@
+doc_id: DOC-MED-01
+title: Monograph: Cardivex
+doc_type: medication_monograph
+---
+Cardivex is a fictional ACE-inhibitor-like agent that relaxes blood vessels. Reported side effects in this knowledge base include Dry Cough, Hyperkalemia and Lightheadedness. Hyperkalemia is of particular concern for patients with Severe Renal Impairment. Lightheadedness is of particular concern for patients with Elderly Frailty and Low Blood Pressure. Cardivex is marked as contraindicated for patients with Pregnancy and Severe Renal Impairment. Contraindication note for Pregnancy: ACE-inhibitor-like agents are marked as not recommended during pregnancy in this synthetic knowledge base. Contraindication note for Severe Renal Impairment: The synthetic entry flags reduced kidney clearance and a risk of potassium build-up. Diurex is listed as an alternative to Cardivex.
