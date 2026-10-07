@@ -1,208 +1,467 @@
 # Healthcare Neuro-Symbolic GraphRAG
 
-A compact research prototype for question answering over a synthetic healthcare knowledge graph. The project combines graph retrieval, symbolic reasoning, vector retrieval, and an LLM into one evidence-first pipeline.
+A prototype combining a knowledge graph, vector retrieval, symbolic rules, and an LLM for multi-hop question answering over synthetic healthcare data.
 
-This repo is designed to study a simple but important idea: multi-hop medical questions are often easier to answer and explain when relevant facts are connected by explicit relationships, not just retrieved as semantically similar text chunks.
+The system combines:
 
-> Warning: this is a synthetic educational demo, not a medical system. The data is fictional and should not be treated as clinical advice.
+* an ontology and a Neo4j knowledge graph
+* vector retrieval with FAISS
+* graph-based retrieval and multi-hop traversal
+* deterministic symbolic rules
+* LLM-based answer generation
+* evidence retrieval and reasoning traces
 
-## What the project does
+> **Disclaimer.** This is an educational/research prototype and is not a medical system. All data is synthetic. Medication names are invented and clinical statements are fictional. No real patient data is used. The project does not make any claim of clinical validity or performance.
 
-The system answers questions such as:
+---
 
-- “A pregnant patient has Hypertension. Which medication should not be recommended?”
-- “A patient with Severe Renal Impairment has Heart Failure. Which treatment should not be recommended, and which alternative needs additional review?”
+## 1. Motivation
 
-It does this by combining:
+Vector RAG works well when the information needed to answer a question is contained in a few relevant text chunks. It becomes less suitable when the answer requires combining several facts stored in different documents.
 
-- a structured knowledge graph
-- document retrieval for supporting context
-- deterministic symbolic rules for derived inferences
-- an LLM that answers only from the supplied evidence
+Knowledge graphs make relations between entities explicit, while symbolic rules can derive additional facts from those relations. LLMs are then used for language understanding and answer generation.
 
-## Architecture
+This project explores how these components can be combined for multi-hop question answering.
 
-```text
-Question
-  ↓
-Entity linking (names + aliases)
-  ↓
-+-----------------------+
-| Vector retrieval      |
-| Graph retrieval       |
-| Symbolic rules        |
-+-----------------------+
-  ↓
-Combined context
-  ↓
-LLM answer grounded in evidence
-  ↓
-Answer + graph paths + rule trace + document hits
-```
+## 2. Problem statement
 
-The repo includes three retrieval modes:
+Given a question such as:
 
-- Vector RAG: semantic document retrieval only
-- GraphRAG: multi-hop graph traversal and path retrieval
-- Hybrid: graph + vector + symbolic reasoning together
+> "Which treatment for Heart Failure should not be recommended for a patient with Severe Renal Impairment, and which alternative needs additional review?"
 
-## Why it exists
+the system retrieves relevant documents and graph relations, applies the symbolic rules, and generates an answer together with the evidence used.
 
-Large language models are good at fluent generation, but they often fail when the answer depends on several related facts spread across different sources. This project is a small, interpretable proof of concept for combining:
+## 3. Research question
 
-- explicit graph structure
-- deterministic rule-based reasoning
-- text retrieval for context
-- explainable evidence trails
+> **Can combining a Knowledge Graph with vector retrieval improve multi-hop question answering compared with a conventional vector-only RAG system?**
 
-## Repository layout
+Three retrieval modes are implemented:
+
+| Mode           | Retrieval                                  | Reasoning                         | Description                                                           |
+| -------------- | ------------------------------------------ | --------------------------------- | --------------------------------------------------------------------- |
+| **Vector RAG** | FAISS top-k over document chunks           | None                              | Retrieves text chunks based on semantic similarity.                   |
+| **GraphRAG**   | Entity linking + multi-hop graph traversal | Graph paths                       | Retrieves relevant relations by traversing the knowledge graph.       |
+| **Hybrid**     | Vector + graph + symbolic rules            | Graph paths + deterministic rules | Combines document evidence, graph relations, and derived conclusions. |
+
+## 4. Architecture
 
 ```text
-.
-├── app/
-│   └── streamlit_app.py
-├── cypher/
-│   └── multihop_queries.cypher
-├── data/
-│   ├── benchmark_questions.csv
-│   ├── entities.csv
-│   ├── relationships.csv
-│   └── documents/
-├── evaluation/
-│   ├── benchmark.py
-│   ├── evaluate.py
-│   ├── results.csv
-│   ├── results.md
-│   └── vector_k_sweep.csv
-├── ontology/
-│   ├── ontology.md
-│   ├── ontology_diagram.png
-│   └── make_diagram.py
-├── src/
-│   ├── config.py
-│   ├── data_generation.py
-│   ├── embeddings.py
-│   ├── graph_builder.py
-│   ├── graph_retriever.py
-│   ├── graph_store.py
-│   ├── hybrid_retriever.py
-│   ├── llm.py
-│   ├── models.py
-│   ├── neo4j_client.py
-│   ├── ontology.py
-│   ├── pipeline.py
-│   ├── symbolic_rules.py
-│   ├── vector_store.py
-│   └── __init__.py
-├── tests/
-│   └── test_pipeline.py
-├── .env.example
-├── .gitignore
-├── docker-compose.yml
-├── README.md
-├── requirements.txt
-└── LICENSE (if added later)
+                         User question
+                               |
+                  Question understanding
+             (entity linking: names + aliases -> KG nodes)
+                               |
+        +----------------------+------------------------+
+        |                      |                        |
+        v                      v                        v
+ Vector retrieval        Graph retrieval          Symbolic rules
+ chunks -> embeddings    seeds -> bounded         deterministic rules
+ -> FAISS top-k          multi-hop traversal      over KG + scenario
+        |                      |                        |
+        +----------+-----------+------------------------+
+                   |
+                   v
+      Document + graph + symbolic evidence
+                   |
+                   v
+                  LLM
+                   |
+                   v
+             Answer + evidence
 ```
 
-## Setup
+## 5. Interface
 
-### 1) Create the environment
+The project includes a Streamlit interface for entering questions and inspecting the retrieved evidence and generated answer.
 
-```bash
-python -m venv .venv
-# Windows PowerShell
-.\.venv\Scripts\Activate.ps1
-# macOS/Linux
-source .venv/bin/activate
+![Streamlit interface](Screeenshots/interface.png)
 
-pip install -r requirements.txt
-cp .env.example .env
-```
+The interface displays:
 
-### 2) Start Neo4j
+* the user question
+* the generated answer
+* document evidence
+* graph paths
+* symbolic reasoning steps
+* the selected retrieval mode
 
-```bash
-docker compose up -d
-```
-
-The default Neo4j credentials are set in [.env.example](.env.example):
-
-- username: `neo4j`
-- password: `healthcare123`
-
-### 3) Generate the synthetic dataset and load the graph
-
-```bash
-python -m src.data_generation
-python -m src.graph_builder
-```
-
-If you want to wipe the previous graph first:
-
-```bash
-python -m src.graph_builder --reset
-```
-
-## Run the demo
-
-```bash
-python -m src.pipeline "A pregnant patient has Hypertension. Which medication should not be recommended?" --mode hybrid
-```
-
-You can also run the UI:
+The application can be started with:
 
 ```bash
 streamlit run app/streamlit_app.py
 ```
 
-## Evaluation results
+## 6. Repository layout
 
-The benchmark in this repo was run with:
+```text
+data/            entities.csv, relationships.csv, documents/ (27), benchmark_questions.csv
+                 (all synthetic)
 
-- graph backend: Neo4j
-- embedding backend: all-MiniLM-L6-v2
-- LLM: local HF model (Qwen/Qwen2.5-1.5B-Instruct)
+ontology/        ontology.md, ontology_diagram.png, make_diagram.py
 
-The benchmark is intentionally small and synthetic: 14 hand-written questions over a 113-entity healthcare KB.
+cypher/          multihop_queries.cypher
 
-These numbers are taken from [evaluation/results.md](evaluation/results.md):
+src/             ontology, data_generation, graph_store (NetworkX), neo4j_client,
+                 graph_builder, graph_retriever, symbolic_rules, embeddings,
+                 vector_store, hybrid_retriever, llm, pipeline, models, config
 
-| Method | Single-hop correct | Multi-hop correct | Evidence complete (all) | Evidence complete (multi-hop) | Mean evidence recall | Unsupported entities | Median context chars | Median latency ms |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Vector RAG | 5/5 | 7/9 | 11/14 | 6/9 | 0.90 | 1 | 1073 | 20186.6 |
-| GraphRAG | 3/5 | 8/9 | 14/14 | 9/9 | 1.00 | 0 | 2674 | 28588.2 |
-| Hybrid (graph+vector+rules) | 5/5 | 8/9 | 14/14 | 9/9 | 1.00 | 0 | 4826 | 31310.4 |
-| Graph + rules | 4/5 | 8/9 | 14/14 | 9/9 | 1.00 | 0 | 3656 | 23140.5 |
-| Vector + graph | 5/5 | 9/9 | 14/14 | 9/9 | 1.00 | 0 | 3723 | 30896.1 |
+evaluation/      benchmark.py, evaluate.py, results.csv, results.md, vector_k_sweep.csv
 
-### How to interpret these results
+app/             streamlit_app.py
 
-- This is a toy benchmark, not a clinical validation.
-- The data is synthetic and intentionally designed to favor structured, explicit reasoning.
-- Graph-based retrieval performs especially well on multi-hop evidence coverage.
-- The repo’s goal is methodology and explainability, not medical-grade performance.
+tests/           test_pipeline.py
+```
 
-## Important limitations
+## 7. Ontology
 
-- The knowledge base is synthetic and very small.
-- Entity linking is exact, alias-based matching and does not handle broad natural-language paraphrase well.
-- The benchmark is hand-authored and uses simple string matching for correctness.
-- The symbolic rules are deterministic but not clinically validated.
-- This project is not a medical diagnosis tool and should not be used for patient care.
+The ontology contains ten classes:
 
-## GitHub readiness
+`Disease, Symptom, Medication, Treatment, RiskFactor, DiagnosticTest, Contraindication, SideEffect, PatientCondition, ClinicalGuideline`
 
-For a public GitHub repository, keep the following in mind:
+and ten relations:
 
-- do not commit secret keys or real credentials
-- keep [.env.example](.env.example) as the template, not the actual runtime config
-- use the repository’s `.gitignore` to avoid committing local virtual environments and environment files
+`HAS_SYMPTOM, HAS_RISK_FACTOR, TREATED_BY, CONTRAINDICATED_BY, HAS_SIDE_EFFECT, DIAGNOSED_BY, ASSOCIATED_WITH, AFFECTS, REQUIRES, ALTERNATIVE_TO`
 
-## License
+Domain and range constraints are defined in `src/ontology.py`. Triples are validated when loaded.
 
-This repo does not currently include a license file. If you plan to publish it publicly on GitHub, add a license such as MIT before opening the repository to the public.
+See [`ontology/ontology.md`](ontology/ontology.md) for the full description.
 
-## Acknowledgement
+![ontology](ontology/ontology_diagram.png)
 
-This project is a research-oriented educational prototype for studying hybrid retrieval and structured reasoning in a healthcare domain.
+## 8. Knowledge graph
+
+The generated knowledge graph contains:
+
+* 113 nodes
+* 196 relationships
+* 10 diseases
+* 21 symptoms
+* 11 medications
+* 6 treatments
+* 10 risk factors
+* 10 diagnostic tests
+* 10 side effects
+* 10 patient conditions
+* 13 contraindications
+* 12 guidelines
+
+The graph can be stored in Neo4j or NetworkX.
+
+Neo4j loading uses `MERGE` and parameterised Cypher with `UNWIND $rows`. Labels and relationship types are restricted to those defined by the ontology.
+
+Example multi-hop query:
+
+```cypher
+MATCH (d:Disease {name: 'Osteoarthritis'})-[:TREATED_BY]->(m:Medication)
+      -[:HAS_SIDE_EFFECT]->(se:SideEffect)-[:AFFECTS]->(pc:PatientCondition)
+RETURN d.name, m.name, se.name, pc.name;
+```
+
+Example result:
+
+```text
+Osteoarthritis
+    -> Arthrocalm
+    -> Stomach Irritation
+    -> Peptic Ulcer History
+```
+
+More queries are available in [`cypher/multihop_queries.cypher`](cypher/multihop_queries.cypher).
+
+## 9. GraphRAG
+
+The GraphRAG pipeline consists of four steps.
+
+### 1. Entity linking
+
+Question entities are matched to graph nodes using names and aliases. The matching is deterministic and uses the longest matching name.
+
+Contraindication and guideline nodes are excluded from this step because their names contain other entities.
+
+### 2. Graph traversal
+
+A bounded DFS is performed from each linked entity.
+
+* Maximum depth: 4 hops
+* Edge direction is normally respected
+* The first hop can be traversed backwards
+* `ASSOCIATED_WITH` and `ALTERNATIVE_TO` can also be traversed backwards
+
+### 3. Path ranking
+
+Paths are ranked using a fixed heuristic:
+
+* `+3` for each additional question entity on the path
+* `+1` when an edge matches the question intent
+* `-0.4` per hop
+
+Paths that do not contribute a relevant entity or intent edge are trimmed. Up to 20 paths are selected, with each selected path adding new edges.
+
+### 4. Context generation
+
+Selected paths are converted to text together with edge notes and entity descriptions.
+
+Example:
+
+```text
+[G1] Hypertension -[TREATED_BY]-> Cardivex
+    -[CONTRAINDICATED_BY]-> Pregnancy
+
+[G7] Frequent Urination <-[HAS_SYMPTOM]- Type 2 Diabetes
+    -[TREATED_BY]-> Sulfaglide
+    -[HAS_SIDE_EFFECT]-> Hypoglycemia
+    -[AFFECTS]-> Elderly Frailty
+```
+
+## 10. Symbolic reasoning
+
+Seven deterministic rules are implemented in `src/symbolic_rules.py`.
+
+Each rule produces an `Inference` containing its premises, rule identifier, and conclusion.
+
+| Rule                          | Logic                                                                                                                               |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| R01 Contraindication block    | Patient has C, M is a candidate, and `M -CONTRAINDICATED_BY-> C` → M should not be recommended                                      |
+| R02 Symptom candidate disease | At least two reported symptoms match `D -HAS_SYMPTOM->` → D becomes a candidate                                                     |
+| R03 Side-effect review        | `M -HAS_SIDE_EFFECT-> S -AFFECTS-> C`, patient has C, and M is not blocked → flag M for review                                      |
+| R04 Alternative option        | M is blocked, `M' -ALTERNATIVE_TO- M`, M' treats the same disease, and there is no recorded contraindication → M' is an alternative |
+| R05 Monitoring requirement    | A guideline associated with M/D requires T → T is needed for monitoring                                                             |
+| R06 Risk-factor match         | Patient has R and `D -HAS_RISK_FACTOR-> R` → D receives a higher-risk consideration                                                 |
+| R07 Comorbidity awareness     | `D1 -ASSOCIATED_WITH- D2` → D2 is kept as a related condition                                                                       |
+
+The implementation assumes that entities mentioned in the question form the patient scenario.
+
+R04 uses a closed-world assumption: the absence of a `CONTRAINDICATED_BY` relation is interpreted as no recorded contraindication in the knowledge base. This assumption would not be appropriate for a real clinical system.
+
+Example:
+
+```text
+RULE_01 => Cardivex should NOT be recommended for a patient
+           with Severe Renal Impairment
+
+premise: Scenario: patient has Severe Renal Impairment
+premise: KG fact: Heart Failure -[TREATED_BY]-> Cardivex
+premise: KG fact: Cardivex -[CONTRAINDICATED_BY]->
+         Severe Renal Impairment
+
+RULE_03 => Diurex should be flagged for additional review
+```
+
+## 11. Hybrid retrieval
+
+`HybridRetriever` runs vector retrieval, graph retrieval, and symbolic reasoning for the same question.
+
+The resulting context is divided into three sections:
+
+```text
+[DOCUMENT EVIDENCE]
+[D1] (DOC-MED-01) Monograph: Cardivex: ...
+
+[GRAPH EVIDENCE]
+[G1] Hypertension -[TREATED_BY]-> Cardivex
+    -[CONTRAINDICATED_BY]-> Pregnancy
+
+[SYMBOLIC REASONING]
+[R1] RULE_01 (Contraindication block) => ...
+```
+
+The LLM receives this context and is instructed to base its answer on the supplied evidence.
+
+## 12. GraphRAG vs Vector RAG
+
+The main difference between the two approaches is how they retrieve information.
+
+**Vector RAG**
+
+Retrieves chunks based on semantic similarity. If the facts needed for a multi-hop answer are distributed across several documents, some of them may not be retrieved.
+
+**GraphRAG**
+
+Uses explicit graph relationships to retrieve a chain of related entities. The retrieval does not depend only on textual similarity.
+
+**Advantages observed in this prototype:**
+
+* multi-hop relations are explicitly represented
+* intermediate entities can be retrieved
+* graph paths provide a direct representation of the relations used
+* retrieval is less dependent on document chunk boundaries
+
+The trade-off is that the graph has to be constructed and maintained. Information that is not represented in the graph cannot be retrieved through graph traversal.
+
+## 13. Neural and symbolic components
+
+The system separates language processing from structured reasoning.
+
+Neural components handle:
+
+* language understanding
+* embeddings
+* semantic retrieval
+* LLM generation
+
+Symbolic components handle:
+
+* entity types and relations
+* graph traversal
+* deterministic inference
+* rule-based conclusions
+
+The symbolic conclusions in R01-R07 are derived from the knowledge graph and scenario rather than being retrieved directly from a document.
+
+The LLM can still produce unsupported or incorrect statements, so the evaluation includes an unsupported-entity metric.
+
+## 14. Evaluation
+
+The benchmark contains 14 manually written questions:
+
+* 5 single-hop questions
+* 9 multi-hop questions
+* multi-hop questions use 2–4 edges
+
+Each question has manually defined expected answers and required evidence.
+
+The evaluation records:
+
+* answer correctness
+* evidence coverage
+* retrieval hops
+* unsupported entities
+* context size
+* latency
+
+The results below come from the run that produced the files in this repository.
+
+**Environment used for this run:**
+
+```text
+Graph backend: NetworkX
+Embeddings: TF-IDF hashing fallback
+LLM: offline / no generation
+```
+
+| Method           | Single-hop answer correct | Multi-hop answer correct | Evidence complete (all) | Evidence complete (multi-hop) | Mean evidence recall | Median context chars |
+| ---------------- | ------------------------: | -----------------------: | ----------------------: | ----------------------------: | -------------------: | -------------------: |
+| Vector RAG (k=4) |                       2/5 |                      6/9 |                    3/14 |                           1/9 |                 0.68 |                 1045 |
+| GraphRAG         |                       5/5 |                      9/9 |                   14/14 |                           9/9 |                 1.00 |                 2674 |
+| Hybrid           |                       5/5 |                      9/9 |                   14/14 |                           9/9 |                 1.00 |                 4816 |
+
+The benchmark and evaluation scripts are located in:
+
+```text
+data/benchmark_questions.csv
+evaluation/benchmark.py
+evaluation/evaluate.py
+```
+
+Results are written to:
+
+```text
+evaluation/results.csv
+evaluation/results.md
+evaluation/vector_k_sweep.csv
+```
+
+## 15. Example questions
+
+| Type           | Question                                                                                                                                               |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1 hop          | What symptoms are associated with Asthma?                                                                                                              |
+| 2 hops         | A pregnant patient has Hypertension. Which medication should not be recommended?                                                                       |
+| 3 hops         | Starting from Osteoarthritis, identify the treatment with Stomach Irritation as a side effect and the patient condition that this side effect affects. |
+| 3 hops + rules | A patient with Severe Renal Impairment has Heart Failure. Which treatment should not be recommended, and which alternative needs additional review?    |
+| 4 hops         | A patient reports Increased Thirst and Frequent Urination. For the candidate disease, which medication has a side effect that affects Elderly Frailty? |
+
+## 16. How to run
+
+### 1. Create the environment
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+
+pip install -r requirements.txt
+
+# Optional: install an API provider
+pip install anthropic
+# or
+pip install openai
+
+cp .env.example .env
+```
+
+### 2. Start Neo4j and generate the data
+
+```bash
+docker compose up -d
+
+python -m src.data_generation
+python -m src.graph_builder
+```
+
+Use `--reset` with `src.graph_builder` to clear the existing graph before loading it again.
+
+### 3. Run a question
+
+```bash
+python -m src.pipeline \
+  "A pregnant patient has Hypertension. Which medication should not be recommended?" \
+  --mode hybrid
+```
+
+### 4. Run the evaluation and tests
+
+```bash
+python -m evaluation.evaluate --ablation
+python -m evaluation.evaluate --k-sweep
+
+streamlit run app/streamlit_app.py
+
+pytest -q
+```
+
+### Running without Neo4j
+
+Set:
+
+```text
+GRAPH_BACKEND=networkx
+```
+
+The default `auto` configuration falls back to NetworkX when Neo4j is unavailable.
+
+For a fully local run without model downloads or an API key:
+
+```text
+EMBEDDING_BACKEND=hashing
+LLM_PROVIDER=offline
+```
+
+Neo4j Browser is available at:
+
+```text
+http://localhost:7474
+```
+
+Default credentials:
+
+```text
+username: neo4j
+password: healthcare123
+```
+
+The test suite contains a Neo4j/NetworkX parity test that runs when Neo4j is available.
+
+## 17. Limitations
+
+* The knowledge base is small, synthetic, and manually constructed, limiting generalizability.
+* The benchmark design was not independent of the knowledge base and retrieval system.
+* Entity linking and evaluation rely on relatively simple methods, including aliases and string matching.
+* The symbolic rules are manually defined and not clinically validated; no medical validity or clinical performance is claimed.
+
+## 18. Future Work
+
+* Develop larger and independently authored benchmarks with paraphrased questions and human evaluation.
+* Improve entity linking and knowledge graph construction using LLMs and embedding-based methods.
+* Explore learned path scoring, improved reranking, and more scalable graph traversal.
+* Investigate formal rule systems, uncertainty reasoning, and comparisons with other GraphRAG approaches.
 
